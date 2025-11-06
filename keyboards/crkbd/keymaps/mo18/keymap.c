@@ -106,6 +106,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+#ifdef RGB_MATRIX_ENABLE
+bool rgb_matrix_indicators_user(void) {
+    // W key position: depends on your matrix; let's assume it's row 0, col 2
+    if (layer_state_is(0)) {
+        // Convert #251DCC to RGB (37, 29, 204)
+        rgb_matrix_set_color(12, 37, 29, 204);
+        rgb_matrix_set_color(9, 73, 70, 253);
+        rgb_matrix_set_color(6, 237, 3, 244);
+        rgb_matrix_set_color(1, 29, 204, 52);
+        // rgb_matrix_set_color(23, 29, 204, 52);
+        // rgb_matrix_set_color(28, 237, 3, 244);
+        // rgb_matrix_set_color(31, 73, 70, 253);
+    }
+    return false; // or return true; depending on your needs
+}
+#endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(0,KC_LEFT):
